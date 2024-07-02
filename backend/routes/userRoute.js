@@ -49,6 +49,8 @@ userRoute.post("/register",async(req,res)=>{
 
     console.log("111111111111111111111111");
 
+    console.log(req.body);
+
     try {
         let reqData=await Usermodel.find({email});
         if(reqData.length>0){
