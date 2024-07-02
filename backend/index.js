@@ -15,6 +15,12 @@ app.use(express.json());
 const httpServer = http.createServer(app);
 const io = new Server(httpServer);
 
+app.use(express.static('./assets'))
+
+
+app.set('view engine','ejs');
+app.use(express.static('public'));
+
 app.get("/",(req,res)=>{
     res.render("index")
 }) 
@@ -22,10 +28,6 @@ app.get("/",(req,res)=>{
 app.use("/user",userRoute)
 app.use("/booking",bookingRoutes)
 
-app.use(express.static('./assets'));
-
-app.set('view engine','ejs');
-app.use(express.static('public'));
 
 app.get("/:room",(req,res)=>{
   res.render('room',{roomId: req.params.room});

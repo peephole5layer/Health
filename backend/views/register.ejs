@@ -4,11 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Register Page</title>
-    <link rel="stylesheet" href="./styles/register.css">
+    <link rel="stylesheet" href="/styles/register.css">
 </head>
 <body>
     <section class="header">
-        <img src="img/logo.png" id="logo">
+        <img src="/img/logo.png" id="logo">
         <a href="index.html" class="logo"></a>
         
      
@@ -29,7 +29,7 @@
         <button id="patient">Patient</button>
     </div>
     <div class="patientDetail">
-        <form action="" id="details" autocomplete="on">
+        <form action="/user/register" id="details" autocomplete="on" method="post">
             <input type="text" id="name" placeholder="Enter Your Name" required>
             <input type="text" id="email" placeholder="Enter Your Email" required>
             <input type="text" id="location" placeholder="Enter Your Current City Name" required>
@@ -38,7 +38,7 @@
         </form>
     </div>
     <div class="doctorDetail">
-        <form action="" id="details" autocomplete="on">
+        <form action="/user/register" id="details" autocomplete="on" method="post" >
             <input type="text" id="nameD" placeholder="Enter Your Name" required>
             <input type="text" id="emailD" placeholder="Enter Your Email" required>
             <input type="text" id="locationD" placeholder="Enter Your Current City Name" required>
@@ -69,4 +69,4 @@
     </div>
 </body>
 </html>
-<script src="./script/register.js"></script>
+<script src="/script/register.js"></script>

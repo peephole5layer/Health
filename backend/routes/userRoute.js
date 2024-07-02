@@ -111,6 +111,15 @@ userRoute.get("/logout", (req,res)=>{
     
  })
 
+ userRoute.get("/loginPage",(req,res)=>{
+    return res.render('login');
+ })
+
+
+ userRoute.get("/registerPage",(req,res)=>{
+    return res.render('register');
+ })
+
 module.exports={
     userRoute
 }
