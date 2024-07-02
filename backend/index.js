@@ -6,24 +6,35 @@ require("dotenv").config();
 const { connection } = require("./config/db");
 const { userRoute } = require("./routes/userRoute");
 const { bookingRoutes } = require("./routes/bookingRoute");
+const bodyParser = require('body-parser');
+
+
 
 const app=express();
 
 app.use(cors());
 app.use(express.json());
 
+// app.use(express.urlencoded({ extended: false }));
+
+
+app.use(bodyParser.urlencoded({ extended: true }));
 const httpServer = http.createServer(app);
 const io = new Server(httpServer);
 
+app.use(express.static('./assets'))
+app.set('view engine','ejs');
+app.set('views','./views');
+
+app.use(express.static('public'));
+
 app.get("/",(req,res)=>{
-    res.send("Welcome to Home Route")
+    res.render("index")
 }) 
 
 app.use("/user",userRoute)
 app.use("/booking",bookingRoutes)
 
-app.set('view engine','ejs');
-app.use(express.static('public'));
 
 app.get("/:room",(req,res)=>{
   res.render('room',{roomId: req.params.room});
@@ -40,10 +51,14 @@ io.on("connection",(socket)=>{
   })
 });
 
+const port = 8888;
+
+console.log(process.env.port);
+
 httpServer.listen(process.env.port,async()=>{
     try {
         await connection;
-        console.log("Connected to DB");
+        // console.log("Connected to DB");
         console.log(`Server is runnning at port ${process.env.port}`)
     } catch (error) {
         console.log("Not able to connect to DB");

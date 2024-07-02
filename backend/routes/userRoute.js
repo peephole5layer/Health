@@ -47,6 +47,10 @@ userRoute.get("/doctors/specialty/:value",async(req,res)=>{
 userRoute.post("/register",async(req,res)=>{
     const {name,email,password,role,specialty,location}=req.body;
 
+    console.log("111111111111111111111111");
+
+    console.log(req.body);
+
     try {
         let reqData=await Usermodel.find({email});
         if(reqData.length>0){
@@ -107,6 +111,15 @@ userRoute.get("/logout", (req,res)=>{
     }
     
     
+ })
+
+ userRoute.get("/loginPage",(req,res)=>{
+    return res.render('login');
+ })
+
+
+ userRoute.get("/registerPage",(req,res)=>{
+    return res.render('register');
  })
 
 module.exports={
