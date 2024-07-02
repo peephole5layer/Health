@@ -47,6 +47,8 @@ userRoute.get("/doctors/specialty/:value",async(req,res)=>{
 userRoute.post("/register",async(req,res)=>{
     const {name,email,password,role,specialty,location}=req.body;
 
+    console.log("111111111111111111111111");
+
     try {
         let reqData=await Usermodel.find({email});
         if(reqData.length>0){

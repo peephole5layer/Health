@@ -16,11 +16,13 @@ const httpServer = http.createServer(app);
 const io = new Server(httpServer);
 
 app.get("/",(req,res)=>{
-    res.send("Welcome to Home Route")
+    res.render("index")
 }) 
 
 app.use("/user",userRoute)
 app.use("/booking",bookingRoutes)
+
+app.use(express.static('./assets'));
 
 app.set('view engine','ejs');
 app.use(express.static('public'));
@@ -40,10 +42,14 @@ io.on("connection",(socket)=>{
   })
 });
 
+const port = 8888;
+
+console.log(process.env.port);
+
 httpServer.listen(process.env.port,async()=>{
     try {
         await connection;
-        console.log("Connected to DB");
+        // console.log("Connected to DB");
         console.log(`Server is runnning at port ${process.env.port}`)
     } catch (error) {
         console.log("Not able to connect to DB");
